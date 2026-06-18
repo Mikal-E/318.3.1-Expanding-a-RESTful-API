@@ -5,6 +5,18 @@ import posts from './routes/posts.js'
 
 import error from './utilities/error.js'
 
+/* Part 1 - Exploring Existig Routes
+Took a good amount of time studying the code.
+Reached out to QS regarding the portion of lesson/lab missed to see if they used ReqBin to test routes like the lesson stated.
+Advised on using Thunderclient or PostMan, both of which I have heard form videos.
+Tested routes using Thunderclient:
+5:13:17 PM: Received a GET request to /api/users?api-key=perscholas.
+-----
+5:15:52 PM: Received a GET request to /api/posts?api-key=perscholas.
+-----
+5:16:30 PM: Received a GET request to /api/users/1?api-key=perscholas.
+*/
+
 const app = express();
 const port = 3000;
 
