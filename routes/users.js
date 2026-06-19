@@ -4,6 +4,8 @@ const router = express.Router()
 import users from '../data/users.js'
 import error from '../utilities/error.js'
 
+import posts from '../data/posts.js'
+
 router
   .route("/")
   .get((req, res) => {
@@ -80,5 +82,21 @@ router
     if (user) res.json(user);
     else next();
   });
+
+// Part 2 Adding Additional Routes - GET /api/users/:id/posts
+
+router
+  .route("/:id/posts")
+  .get((req, res, next) => {
+
+    const post = posts.filter((post) => post.userId == req.params.id);
+
+    if (post.length > 0) {
+
+      res.json({post})
+      
+    } else next();
+
+  })
 
 export default router

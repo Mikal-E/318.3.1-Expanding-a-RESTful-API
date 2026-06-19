@@ -15,8 +15,22 @@ router
       },
     ];
 
-    res.json({ posts, links });
+// Part 2 Adding Additional Routes - GET /api/posts?userId=<VALUE>
+
+    const post = posts.filter((post) => post.userId == req.query.userId);
+
+    if (req.query.userId) {
+
+      res.json({ post });
+      
+    } else {
+
+      res.json({ posts, links });
+
+    } 
+
   })
+
   .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {
       const post = {
