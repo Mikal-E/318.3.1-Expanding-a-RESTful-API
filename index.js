@@ -5,6 +5,10 @@ import posts from './routes/posts.js'
 
 import error from './utilities/error.js'
 
+// Part 2: Adding Additional Routes - Importing comments
+
+import comments from "./routes/comments.js"
+
 /* Part 1 - Exploring Existig Routes
 Took a good amount of time studying the code.
 Reached out to QS regarding the portion of lesson/lab missed to see if they used ReqBin to test routes like the lesson stated.
@@ -15,6 +19,34 @@ Tested routes using Thunderclient:
 5:15:52 PM: Received a GET request to /api/posts?api-key=perscholas.
 -----
 5:16:30 PM: Received a GET request to /api/users/1?api-key=perscholas.
+*/
+
+/* Part 3: Testing - Test your routes!
+Server listening on port: 3000.
+-----
+10:35:55 PM: Received a GET request to /api/comments?api-key=perscholas.
+-----
+10:37:15 PM: Received a POST request to /api/comments?api-key=perscholas.
+-----
+10:38:47 PM: Received a POST request to /api/comments?api-key=perscholas.
+Containing the data:
+{"userId":1,"postId":1,"body":"This is my first comment!"}
+-----
+10:40:55 PM: Received a GET request to /api/comments/1?api-key=perscholas.
+Containing the data:
+{"userId":1,"postId":1,"body":"This is my first comment!"}
+-----
+10:42:01 PM: Received a PATCH request to /api/comments/1?api-key=perscholas.
+Containing the data:
+{"body":"I updated my comment!"}
+-----
+10:42:47 PM: Received a DELETE request to /api/comments/1?api-key=perscholas.
+Containing the data:
+{"body":"I updated my comment!"}
+-----
+10:43:04 PM: Received a DELETE request to /api/comments/1?api-key=perscholas.
+Containing the data:
+{"body":"I updated my comment!"}
 */
 
 const app = express();
@@ -64,6 +96,10 @@ app.use("/api", function (req, res, next) {
 // Use our Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+
+// Part 2: Adding Additional Routes - Using Comments Route
+
+app.use("/api/comments", comments);
 
 // Adding some HATEOAS links.
 app.get("/", (req, res) => {
@@ -127,3 +163,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}.`);
 });
+
